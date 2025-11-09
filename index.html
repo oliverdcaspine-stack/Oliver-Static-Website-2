@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard - Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="user-profile">
+                <div class="profile-picture">
+                    <img src="https://via.placeholder.com/60" alt="Profile">
+                </div>
+                <div class="profile-name">Nick Jenkins</div>
+            </div>
+            
+            <button class="btn-add-new">
+                <i class="fas fa-plus"></i>
+                <span>Add New</span>
+            </button>
+            
+            <nav class="main-nav">
+                <a href="#" class="nav-item active">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Transactions</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-th"></i>
+                    <span>Categories</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Balance</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-wallet"></i>
+                    <span>Accounts</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Goals</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Upcoming</span>
+                </a>
+                
+                <div class="nav-divider"></div>
+                
+                <a href="#" class="nav-item">
+                    <i class="fas fa-bell"></i>
+                    <span>Reminders</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Calendar</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fas fa-history"></i>
+                    <span>History</span>
+                </a>
+            </nav>
+            
+            <button class="btn-pro">
+                <i class="fas fa-check"></i>
+                <span>Pro Account</span>
+            </button>
+            
+            <div class="theme-toggle">
+                <span>Light Mode</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <button class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Log Out</span>
+            </button>
+        </aside>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+                    <div class="logo">💰</div>
+                    <button class="sidebar-toggle"><i class="fas fa-chevron-left"></i></button>
+                    <button class="sidebar-toggle"><i class="fas fa-chevron-left"></i></button>
+                </div>
+                <div class="header-center">
+                    <h1>My Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <select id="accountSelect" class="header-select">
+                        <option>All Accounts</option>
+                    </select>
+                    <select id="monthSelect" class="header-select">
+                        <option>March</option>
+                    </select>
+                    <select id="yearSelect" class="header-select">
+                        <option>2024</option>
+                    </select>
+                    <button class="header-icon"><i class="fas fa-search"></i></button>
+                    <button class="header-icon"><i class="fas fa-cog"></i></button>
+                </div>
+            </header>
+            
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Summary Cards -->
+                <div class="summary-cards">
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div class="card-info">
+                                <h3>Balance</h3>
+                                <p class="card-subtitle">10 Transactions</p>
+                                <p class="card-amount" id="balanceAmount">1500.00$</p>
+                            </div>
+                            <div class="card-progress">
+                                <div class="circular-progress" data-percent="72">
+                                    <span>72%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div class="card-info">
+                                <h3>Expense</h3>
+                                <p class="card-subtitle">9 Transactions</p>
+                                <p class="card-amount expense" id="expenseAmount">-600.00$</p>
+                            </div>
+                            <div class="card-progress">
+                                <div class="circular-progress expense" data-percent="28">
+                                    <span>-28%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card">
+                        <div class="card-content">
+                            <div class="card-info">
+                                <h3>Income</h3>
+                                <p class="card-subtitle">1 Transactions</p>
+                                <p class="card-amount income" id="incomeAmount">+2180.00$</p>
+                            </div>
+                            <div class="card-progress">
+                                <div class="circular-progress income" data-percent="100">
+                                    <span>100%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Categories and Statistics Row -->
+                <div class="dashboard-row">
+                    <div class="widget categories-widget">
+                        <div class="widget-header">
+                            <h2>Categories</h2>
+                            <div class="widget-tabs">
+                                <button class="tab active">Expenses</button>
+                                <button class="tab">Incomes</button>
+                            </div>
+                        </div>
+                        <div class="categories-grid" id="categoriesGrid">
+                            <!-- Categories will be dynamically generated -->
+                        </div>
+                    </div>
+                    
+                    <div class="widget statistics-widget">
+                        <div class="widget-header">
+                            <h2>Statistics</h2>
+                            <div class="widget-tabs">
+                                <button class="tab active">Bar Graph</button>
+                                <button class="tab">Line Graph</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="statisticsChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="widget reminders-widget">
+                        <div class="widget-header">
+                            <h2>Reminders</h2>
+                            <button class="btn-icon"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <div class="reminders-list" id="remindersList">
+                            <!-- Reminders will be dynamically generated -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Transactions, Balance, and Upcoming Row -->
+                <div class="dashboard-row">
+                    <div class="widget transactions-widget">
+                        <div class="widget-header">
+                            <h2>Transactions</h2>
+                            <a href="#" class="see-all">See All →</a>
+                        </div>
+                        <div class="transactions-list" id="expensesList">
+                            <p class="empty-message">No expenses yet. Add your first expense!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="widget balance-widget">
+                        <div class="widget-header">
+                            <h2>Balance</h2>
+                            <div class="widget-tabs">
+                                <button class="tab active">Pie Chart</button>
+                                <button class="tab">Bar Graph</button>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="balanceChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="widget upcoming-widget">
+                        <div class="widget-header">
+                            <h2>Upcoming</h2>
+                            <button class="btn-icon"><i class="fas fa-plus"></i></button>
+                        </div>
+                        <div class="upcoming-list" id="upcomingList">
+                            <!-- Upcoming items will be dynamically generated -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Expense Modal (hidden by default, triggered by "Add New" button) -->
+    <div class="modal" id="expenseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Transaction</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <form id="expenseForm">
+                <div class="form-group">
+                    <label for="transactionType">Type</label>
+                    <select id="transactionType" class="form-select">
+                        <option value="expense">Expense</option>
+                        <option value="income">Income</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amount" id="amountLabel">Amount</label>
+                    <input type="number" id="amount" step="0.01" min="0" required placeholder="0.00">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" required placeholder="What did you spend on?">
+                </div>
+                <div class="form-group" id="categoryGroup">
+                    <label for="category">Category</label>
+                    <select id="category" class="form-select">
+                        <option value="house">House</option>
+                        <option value="grocery">Grocery</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="education">Education</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="currencySelect">Currency:</label>
+                    <select id="currencySelect" class="form-select">
+                        <option value="USD">USD ($)</option>
+                        <option value="INR">INR (₹)</option>
+                        <option value="EUR">EUR (€)</option>
+                        <option value="GBP">GBP (£)</option>
+                        <option value="JPY">JPY (¥)</option>
+                        <option value="CNY">CNY (¥)</option>
+                        <option value="AUD">AUD (A$)</option>
+                        <option value="CAD">CAD (C$)</option>
+                        <option value="CHF">CHF (Fr)</option>
+                        <option value="AED">AED (د.إ)</option>
+                        <option value="SAR">SAR (﷼)</option>
+                        <option value="PKR">PKR (₨)</option>
+                        <option value="BRL">BRL (R$)</option>
+                        <option value="ZAR">ZAR (R)</option>
+                        <option value="RUB">RUB (₽)</option>
+                        <option value="KRW">KRW (₩)</option>
+                        <option value="MXN">MXN ($)</option>
+                        <option value="SGD">SGD (S$)</option>
+                        <option value="NZD">NZD (NZ$)</option>
+                        <option value="HKD">HKD (HK$)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Add Transaction</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content settings-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="modal-close" id="closeSettingsModal">&times;</button>
+            </div>
+
+            <div class="settings-sections">
+                <section class="settings-section">
+                    <h3>Account Settings</h3>
+                    <label>Display name
+                        <input type="text" id="settingDisplayName" class="form-select" placeholder="Your name">
+                    </label>
+                    <label>Email
+                        <input type="email" id="settingEmail" class="form-select" placeholder="you@example.com">
+                    </label>
+                    <div style="margin-top:8px; color:var(--text-secondary); font-size:0.9em">Password change, 2FA and connected accounts can be managed here (placeholders).</div>
+                </section>
+
+                <section class="settings-section">
+                    <h3>Currency & Financial</h3>
+                    <label>Default currency
+                        <select id="defaultCurrencySelect" class="form-select"></select>
+                    </label>
+                    <label style="margin-top:8px; display:flex; align-items:center; gap:10px"><input type="checkbox" id="multiCurrencySupport"> Enable multi-currency support</label>
+                </section>
+
+                <section class="settings-section">
+                    <h3>Localization</h3>
+                    <label>Language
+                        <select id="languageSelect" class="form-select"></select>
+                    </label>
+                    <label style="margin-top:8px">Date format
+                        <select id="dateFormatSelect" class="form-select">
+                            <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                            <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                            <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                        </select>
+                    </label>
+                    <label style="margin-top:8px">Start of week
+                        <select id="startOfWeekSelect" class="form-select">
+                            <option value="sunday">Sunday</option>
+                            <option value="monday">Monday</option>
+                        </select>
+                    </label>
+                </section>
+
+                <section class="settings-section">
+                    <h3>Appearance</h3>
+                    <label>Theme
+                        <select id="themeSelect" class="form-select">
+                            <option value="dark">Dark</option>
+                            <option value="light">Light</option>
+                        </select>
+                    </label>
+                    <label style="margin-top:8px">Compact layout
+                        <select id="layoutDensity" class="form-select">
+                            <option value="comfortable">Comfortable</option>
+                            <option value="compact">Compact</option>
+                        </select>
+                    </label>
+                </section>
+
+                <section class="settings-section">
+                    <h3>Notifications</h3>
+                    <label style="display:flex; align-items:center; gap:10px"><input type="checkbox" id="notifyReminders"> Expense reminders</label>
+                    <label style="display:flex; align-items:center; gap:10px"><input type="checkbox" id="notifyBudgets"> Budget limit alerts</label>
+                </section>
+            </div>
+
+            <div style="margin-top:20px; display:flex; gap:10px; justify-content:flex-end;">
+                <button class="btn-submit" id="saveSettingsBtn">Save Settings</button>
+                <button class="btn-logout" id="cancelSettingsBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
